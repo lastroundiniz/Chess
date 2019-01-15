@@ -1,13 +1,13 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package chess;
+//@author Gustavo Targino
 
-/**
- *
- * @author Gustavo Targino
- */
-public class King {
+public class King extends Piece {
     
+    public King(String nick, int color) {
+        super (nick, color);
+    }
+    
+    public boolean movement () {
+        return true;
+    }
 }

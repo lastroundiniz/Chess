@@ -1,25 +1,21 @@
 package chess;
 // @author Gustavo Targino
-public class Piece {
 
-    public Piece(int color, int[][] piecePosition) {
-        this.color = color; // 0-white 1-Black
-        this.piecePosition = piecePosition;
-    }
-    
+public class Piece {
     int color;
-    int[][] piecePosition;
+    String nick = new String();
+    
+    
+    public Piece(String nick, int color) {
+        this.color = color; // 0-white 1-Black
+        this.nick = nick;
+    }
     
     public int getColor() {
         return this.color;
     }
     
-    public int[][] getPiecePosition() {
-        return this.piecePosition;
+    public String getNick() {
+        return this.nick;
     }
-    
-    public void setPiecePosition(int[][] pp) {
-        this.piecePosition = pp;
-    }
-    
 }
