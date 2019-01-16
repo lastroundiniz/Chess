@@ -1,4 +1,5 @@
 package chess;
+import java.util.Scanner;
 // @author Gustavo Targino
 
 public class ChessPlay {
@@ -8,12 +9,19 @@ public class ChessPlay {
         cb.setStandardScheme();
         cb.printBoard();
         
-        System.out.println(" ");
-        System.out.println("white turn");
+        Scanner input = new Scanner(System.in);
+        String source, destination;
         
-        System.out.println("Choose a piece to move");
+        System.out.println(" ");
+        
         System.out.println("Firt enter the source coordinates (e.g A4) where"
                 + " the peace you want to move is");
+        source = input.next();
         System.out.println("Then enter the destination coordinates (e.g A5)");
+        destination = input.next();
+       
+        System.out.println(cb.setPieceSquare(source, destination));
+        
+        cb.printBoard();
     }
 }

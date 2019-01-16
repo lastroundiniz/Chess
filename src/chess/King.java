@@ -7,7 +7,7 @@ public class King extends Piece {
         super (nick, color);
     }
     
-    public boolean movement () {
+    public boolean movement (int sourceRow, int sourceColumn, int targetRow, int targetColumn) {
         return true;
     }
 }
