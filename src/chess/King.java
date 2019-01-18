@@ -1,5 +1,5 @@
 package chess;
-//@author Gustavo Targino
+// @author Gustavo Targino
 
 public class King extends Piece {
     
@@ -7,7 +7,16 @@ public class King extends Piece {
         super (nick, color);
     }
     
-    public boolean movement (int sourceRow, int sourceColumn, int targetRow, int targetColumn) {
-        return true;
+    @Override
+    public boolean pieceMovement (int sourceRow, int sourceColumn, int targetRow, int targetColumn) {
+        if (Math.abs(sourceRow - targetRow) == 1 && Math.abs(sourceColumn - targetColumn) == 1 ||
+                Math.abs(sourceRow - targetRow) == 1 && Math.abs(sourceColumn - targetColumn) == 0 ||
+                Math.abs(sourceRow - targetRow) == 0 && Math.abs(sourceColumn - targetColumn) == 1)
+            return true;
+        else {
+            System.out.println("King can't do this movement");
+            return false;
+        }
+            
     }
 }
