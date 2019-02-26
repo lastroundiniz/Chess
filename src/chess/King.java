@@ -8,7 +8,7 @@ public class King extends Piece {
     }
     
     @Override
-    public boolean pieceMovement (int sourceRow, int sourceColumn, int targetRow, int targetColumn) {
+    public boolean pieceMovement (int sourceRow, int sourceColumn, int targetRow, int targetColumn, ChessBoard cb) {
         if (Math.abs(sourceRow - targetRow) == 1 && Math.abs(sourceColumn - targetColumn) == 1 ||
                 Math.abs(sourceRow - targetRow) == 1 && Math.abs(sourceColumn - targetColumn) == 0 ||
                 Math.abs(sourceRow - targetRow) == 0 && Math.abs(sourceColumn - targetColumn) == 1)

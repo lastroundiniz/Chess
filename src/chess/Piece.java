@@ -6,7 +6,6 @@ public class Piece {
     int color;
     String nick = new String();
     
-    
     public Piece(String nick, int color) {
         this.color = color; // 0-white 1-black
         this.nick = nick;
@@ -20,7 +19,7 @@ public class Piece {
         return this.nick;
     }
     
-    public boolean pieceMovement (int sourceRow, int sourceColumn, int targetRow, int targetColumn) {
+    public boolean pieceMovement (int sourceRow, int sourceColumn, int targetRow, int targetColumn, ChessBoard cb) {
         return false;
     }
 }

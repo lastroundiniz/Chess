@@ -13,6 +13,9 @@ public class ChessPlay {
         String source, destination;
         
         while (true) {
+            if(cb.hasPawnToPromote())
+                System.out.println("wich piece you want?");
+
             System.out.println(" ");
 
             System.out.println("Enter the source coordinates (e.g A4) where"
@@ -20,10 +23,10 @@ public class ChessPlay {
             source = input.next();
             System.out.println("Then enter the destination coordinates (e.g A5)");
             destination = input.next();
-
-            System.out.println(cb.setPieceSquare(source, destination));
+            cb.setPieceSquare(source, destination);
 
             cb.printBoard();
+            
         }
     }
 }

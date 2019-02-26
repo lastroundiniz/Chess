@@ -3,11 +3,27 @@ package chess;
 
 public class ChessBoard {
     Piece [][] board = new Piece[8][8];
+    
     King whiteKing = new King("K_W",0);
     King blackKing = new King("K_B",1);
     
-    Pawn whitePawn = new Pawn("P_W",0);
-    Pawn blackPawn = new Pawn("P_B",1);
+    Pawn whitePawn0 = new Pawn("P_W",0);
+    Pawn whitePawn1 = new Pawn("P_W",0);
+    Pawn whitePawn2 = new Pawn("P_W",0);
+    Pawn whitePawn3 = new Pawn("P_W",0);
+    Pawn whitePawn4 = new Pawn("P_W",0);
+    Pawn whitePawn5 = new Pawn("P_W",0);
+    Pawn whitePawn6 = new Pawn("P_W",0);
+    Pawn whitePawn7 = new Pawn("P_W",0);
+    
+    Pawn blackPawn0 = new Pawn("P_B",1);
+    Pawn blackPawn1 = new Pawn("P_B",1);
+    Pawn blackPawn2 = new Pawn("P_B",1);
+    Pawn blackPawn3 = new Pawn("P_B",1);
+    Pawn blackPawn4 = new Pawn("P_B",1);
+    Pawn blackPawn5 = new Pawn("P_B",1);
+    Pawn blackPawn7 = new Pawn("P_B",1);
+    Pawn blackPawn6 = new Pawn("P_B",1);
     
     String alphaColumns[] = {"A","B","C","D","E","F","G","H"};
     
@@ -16,25 +32,25 @@ public class ChessBoard {
         
         // white
         board [7][4] = whiteKing;
-        board [6][0] = whitePawn;
-        board [6][1] = whitePawn;
-        board [6][2] = whitePawn;
-        board [6][3] = whitePawn;
-        //board [6][4] = whitePawn;
-        board [6][5] = whitePawn;
-        board [6][6] = whitePawn;
-        board [6][7] = whitePawn;
+        board [6][0] = whitePawn0;
+        board [6][1] = whitePawn1;
+        board [6][2] = whitePawn2;
+        board [6][3] = whitePawn3;
+        //board [6][4] = whitePawn4;
+        board [6][5] = whitePawn5;
+        board [6][6] = whitePawn6;
+        board [6][7] = whitePawn7;
         
         // black
         board [0][4] = blackKing;
-        board [1][0] = blackPawn;
-        board [1][1] = blackPawn;
-        board [1][2] = blackPawn;
-        board [1][3] = blackPawn;
-        board [1][4] = blackPawn;
-        board [1][5] = blackPawn;
-        board [1][6] = blackPawn;
-        board [1][7] = blackPawn;
+        board [1][0] = blackPawn0;
+        board [1][1] = blackPawn1;
+        board [1][2] = blackPawn2;
+        board [1][3] = blackPawn3;
+        board [1][4] = blackPawn4;
+        board [1][5] = blackPawn5;
+        board [1][6] = blackPawn6;
+        board [1][7] = blackPawn7;
     }
     
   
@@ -106,26 +122,17 @@ public class ChessBoard {
                 (sourceColumn != targetColumn || sourceRow != targetRow) && 
                 board[sourceRow][sourceColumn] != null) {
                 
-                // check if the target square is available
-                if (board[targetRow][targetColumn] == null) {
+                // check if the target square is available or there is a same color piece in the target square
+                if (board[targetRow][targetColumn] == null ||
+                        !(board[sourceRow][sourceColumn].getColor() == board[targetRow][targetColumn].getColor())) {
                     // try to do the piece movement
-                    moved = board[sourceRow][sourceColumn].pieceMovement(sourceRow, sourceColumn, targetRow, targetColumn);
+                    moved = board[sourceRow][sourceColumn].pieceMovement(sourceRow, sourceColumn, targetRow, targetColumn, this);
                     if (moved) {
                             board[targetRow][targetColumn] = board[sourceRow][sourceColumn];
                             board[sourceRow][sourceColumn] = null;
                     }
                 } else {
-                    // checking if there is a same color piece in the target square
-                    if (board[sourceRow][sourceColumn].getColor() == board[targetRow][targetColumn].getColor()) {
-                        System.out.println("Square is fill with a same color piece");
-                    } else {
-                        // try to do the piece movement
-                        moved = board[sourceRow][sourceColumn].pieceMovement(sourceRow, sourceColumn, targetRow, targetColumn);
-                        if (moved) {
-                            board[targetRow][targetColumn] = board[sourceRow][sourceColumn];
-                            board[sourceRow][sourceColumn] = null;
-                        }
-                    }
+                    System.out.println("Square is filled with a same color piece");
                 }
             } else {
                 System.out.println("Invalid movement. Source is empty OR the source"
@@ -137,7 +144,6 @@ public class ChessBoard {
     public void getPieceInPosition(int row, int column) {
         //return board [7][4]
     }
-    
     public void printBoard() {
         System.out.print("     ");
         for (int i = 0; i < board[0].length; i++) {
@@ -164,5 +170,23 @@ public class ChessBoard {
             System.out.print("   " + alphaColumns[i] + "  ");
         }
         System.out.println(" ");
+    }
+    public boolean hasPawnToPromote () {
+        boolean hasPawn = false;
+        for (int i = 0; i < board[7].length; i++) {
+            System.out.println("black " + board[7][i]);
+            if (board[7][i] != null) {
+                if (board[7][i].getNick().equals("P_B"))
+                    hasPawn = true;
+            }
+        }
+        for (int i = 0; i < board[0].length; i++) {
+            System.out.println("white " + board[0][i]);
+            if (board[0][i] != null) {
+                if (board[0][i].getNick().equals("P_W"))
+                    hasPawn = true;
+            }
+        }
+        return hasPawn;
     }
 }
